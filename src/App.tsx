@@ -1,14 +1,20 @@
+import { Routes, Route, } from 'react-router-dom';
 import './App.scss'
 import { MenuLeft } from './components'
-import { Search } from './pages';
+import { Collection, Eror404, Search } from './pages';
 
 
 function App() {
 
   return (
     <>
-      <MenuLeft/>
-      <Search/>
+      <Routes>
+        <Route path='/' element={<MenuLeft/>}>
+          <Route index element={<Search/>}/>
+          <Route path='collection' element={<Collection/>}/>
+          <Route path='*' element={<Eror404/>}/>
+        </Route>
+      </Routes>
     </>
     
   );
