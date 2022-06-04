@@ -1,0 +1,38 @@
+.form-search {
+    position: relative;
+    text-align: center;
+
+    min-width: 400px;
+    width: 80%;
+
+    margin-left: 5%;
+    margin-right: 30%;
+    padding: 1em;
+    padding-top: 1em;
+
+    border: 2px dotted black;
+    border-radius: 10px;
+    font-size: 1.2em;
+
+    .btn-base {
+        margin-top: 0.25em;
+        margin-left: 1em;
+        font-size: 1em;
+    }
+}
+
+.form-search__btnX {
+    position: absolute;
+    margin-left: -30px;
+    margin-top: 0.25em;
+
+    border-radius: 50%;
+    border: 0;
+    font-size: 1em;
+    background-color: rgb(150, 150, 150);
+    color: white;
+
+    &:hover {
+        background-color: red;
+    }
+}
