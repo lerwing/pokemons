@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<MenuLeft/>}>
+        <Route path='/pokemons' element={<MenuLeft/>}>
           <Route index element={<Search/>}/>
           <Route path='collection' element={<Collection/>}/>
           <Route path='*' element={<Eror404/>}/>
