@@ -3,10 +3,11 @@ import './BtnBase.scss';
 
 
 
-const BtnBase:FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({children, ...props}) => {
+const BtnBase:FC<ButtonHTMLAttributes<HTMLButtonElement> & {clickCallback?: () => void}> = ({children, clickCallback, ...props}) => {
     const click = (event: { preventDefault: () => void; }) => {
-        event.preventDefault()
-        console.log('click')
+        event.preventDefault();
+        clickCallback?.();
+        console.log('click');
     };
 
     return (

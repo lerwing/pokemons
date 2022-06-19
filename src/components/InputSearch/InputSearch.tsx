@@ -1,7 +1,7 @@
-import { FC, InputHTMLAttributes } from "react";
+import { FC, HTMLProps } from "react";
 import './InputSearch.scss';
 
-const InputMain:FC<InputHTMLAttributes<HTMLInputElement>> = (props) => {
+const InputMain:FC<HTMLProps<HTMLInputElement>> = (props) => {
     return (
         <input {...props} className="input-search" />
     );
