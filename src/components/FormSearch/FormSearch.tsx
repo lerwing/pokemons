@@ -1,10 +1,17 @@
 import { ChangeEvent, FC, HTMLAttributes, useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { addPokemon } from "../../store/pokemonSlice";
+import { fetchInput } from "../../store/async";
+
 import { InputMain } from "../InputSearch";
 import { BtnBase } from "../BtnBase"
+import { API } from "../../const";
 import "./FormSearch.scss"
 
 const FormSearch:FC<HTMLAttributes<HTMLFormElement>> = (props) => {
-    const [textInput, setTextInput] = useState('');
+    const [textInput, setTextInput] = useState<string>('');
+    const dispatch = useDispatch<any>();
 
     const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setTextInput(e?.target?.value)
@@ -13,19 +20,26 @@ const FormSearch:FC<HTMLAttributes<HTMLFormElement>> = (props) => {
     const clickCloseBtn = useCallback(() => {
         setTextInput('')
     }, []);
-
+    
     const onSubmitHandler = () => {
-        fetch('https://pokeapi.co/api/v2/pokemon/asdasdas')
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
+        dispatch(fetchInput(`${API.POKEMONS}${textInput}`)).then((data:any) => {
+            //при такой передачи данных двойная глубина .payload
+            dispatch(addPokemon(data));
         });
     };
+    // старая версия
+    // const onSubmitHandler = () => {
+    //     fetch(`${API.POKEMONS}${textInput}`)
+    //     .then((response) => {
+    //         return response.json();
+    //     })
+    //     .then((data) => {
+    //         dispatch(addPokemon(data));
+    //     });
+    // };
 
     return (
-        <form {...props} className="form-search" onSubmit={onSubmitHandler}>
+        <form {...props} className="form-search">
         <>
             <InputMain 
                 type="text"
@@ -34,7 +48,7 @@ const FormSearch:FC<HTMLAttributes<HTMLFormElement>> = (props) => {
                 onChange={onChangeHandler}
             />
             <BtnBase type="button" className='form-search__btnX' clickCallback={clickCloseBtn}>X</BtnBase>
-            <BtnBase clickCallback={onSubmitHandler}>Поиск</BtnBase>
+            <BtnBase type="submit" clickCallback={onSubmitHandler}>Поиск</BtnBase>
         </>
         </form>
     );

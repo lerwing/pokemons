@@ -1,3 +1,4 @@
 import {ROUTES} from './Routes'
+import { API } from './Api'
 
-export {ROUTES}
+export {ROUTES, API}
