@@ -3,7 +3,7 @@ import { FormSearch } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import "./Search.scss"
 import { searchPokemon } from "../../store/apiService";
-
+import { StatePokemon } from "../../store/interface";
 
 
 const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
@@ -11,7 +11,7 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
     const { 
         pokemonIsLoad,
         pokemonIsError,
-    } = useSelector(state => state.pokemon);
+    } = useSelector((state: { pokemon: StatePokemon; }) => state.pokemon);
 
     const searchPokemonProps = (namePokemon: string) => {
         dispatch(searchPokemon(namePokemon))
