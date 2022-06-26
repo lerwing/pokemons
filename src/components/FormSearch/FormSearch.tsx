@@ -7,7 +7,7 @@ import { InputMain } from "../InputSearch";
 import { BtnBase } from "../BtnBase"
 import "./FormSearch.scss"
 
-const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string) => void}> = (sendForm, ...props) => {
+const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string) => void}> = ({sendForm, ...props}) => {
     const [textInput, setTextInput] = useState<string>('');
     // const dispatch = useDispatch<any>();
 
@@ -19,9 +19,9 @@ const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string
         setTextInput('')
     }, []);
     
-    const onSubmitHandler = () => {
+    const onSubmitHandler = useCallback(() => {
         sendForm?.(textInput)
-    };
+    }, [sendForm, textInput]);
     
     // const onSubmitHandler2 = () => {
     //     dispatch(searchPokemon(textInput))
