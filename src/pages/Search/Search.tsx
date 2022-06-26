@@ -1,18 +1,16 @@
 import { FC, HTMLAttributes } from "react";
 import { FormSearch } from "../../components";
-import { useDispatch, useSelector } from "react-redux";
 import "./Search.scss"
 import { searchPokemon } from "../../store/apiService";
-import { StatePokemon } from "../../store/interface";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
 
 const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispatch()
     const { 
         pokemonIsLoad,
         pokemonIsError,
-    } = useSelector((state: { pokemon: StatePokemon; }) => state.pokemon);
-
+    } = useAppSelector (state => state.pokemonSlice)
     const searchPokemonProps = (namePokemon: string) => {
         dispatch(searchPokemon(namePokemon))
     };
