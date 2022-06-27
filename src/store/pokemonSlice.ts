@@ -26,7 +26,7 @@ const pokemonSlice = createSlice({
             state.pokemonIsError = false;
             state.pokemonIsErrorMessage = '';
             state.pokemon = pokemonAdapter(action.payload);
-            console.log(action.payload);
+            console.log(pokemonAdapter(action.payload));
         },
         [searchPokemon.pending.type]: (state) => {
             state.pokemonIsLoad = true;

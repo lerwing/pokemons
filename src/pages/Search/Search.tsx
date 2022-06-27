@@ -10,6 +10,7 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
     const { 
         pokemonIsLoad,
         pokemonIsError,
+        pokemon,
     } = useAppSelector (state => state.pokemonSlice)
     const searchPokemonProps = (namePokemon: string) => {
         dispatch(searchPokemon(namePokemon))
@@ -21,6 +22,9 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
             <FormSearch sendForm={searchPokemonProps}/>
             {pokemonIsLoad && <h2>Ищем покемона...</h2>}
             {pokemonIsError && <h2>Покемон с таким имененм не найден</h2>}
+            {pokemon && 
+                <><h2>ID:{pokemon.id} Name:{pokemon.name}</h2><img src={pokemon.svgUrl} alt="Изображение" /></>
+            }
         </main>
     );
 };
