@@ -6,13 +6,12 @@ export const searchPokemon = createAsyncThunk(
     async (textInput: string, thunkAPI) => {
         try {
             const response = await fetch(`${API.POKEMONS}${textInput}`);
-
             if (!response.ok) {
                 console.log(response)
                 throw new Error ('Покемон не найден')
+            } else {
+                return response.json();
             }
-
-            return response.json();
             
         } catch (error:any) {
             // несмотря на то что в конструкторе message?: string не могу задать тип строка

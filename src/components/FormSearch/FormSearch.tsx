@@ -1,7 +1,4 @@
 import { ChangeEvent, FC, HTMLAttributes, useCallback, useState } from "react";
-// import { useDispatch } from "react-redux";
-
-// import { searchPokemon } from "../../store/apiService";
 
 import { InputMain } from "../InputSearch";
 import { BtnBase } from "../BtnBase"
@@ -9,7 +6,6 @@ import "./FormSearch.scss"
 
 const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string) => void}> = ({sendForm, ...props}) => {
     const [textInput, setTextInput] = useState<string>('');
-    // const dispatch = useDispatch<any>();
 
     const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setTextInput(e?.target?.value)
@@ -20,22 +16,11 @@ const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string
     }, []);
     
     const onSubmitHandler = useCallback(() => {
-        sendForm?.(textInput)
+        if (textInput) {
+            sendForm?.(textInput)
+            setTextInput('')
+        }
     }, [sendForm, textInput]);
-    
-    // const onSubmitHandler2 = () => {
-    //     dispatch(searchPokemon(textInput))
-    // };
-    // старая версия
-    // const onSubmitHandler = () => {
-    //     fetch(`${API.POKEMONS}${textInput}`)
-    //     .then((response) => {
-    //         return response.json();
-    //     })
-    //     .then((data) => {
-    //         dispatch(addPokemon(data));
-    //     });
-    // };
 
     return (
         <form {...props} className="form-search">
