@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { searchPokemon } from "./apiService";
 import { StatePokemon } from "./interface";
 import { pokemonAdapter } from "./utils";
@@ -19,28 +19,50 @@ const pokemonSlice = createSlice({
             console.log(action);
         }
     },
-    extraReducers: (builder) => {
-        builder.addCase(searchPokemon.fulfilled, (state, action) => {
+    extraReducers: {
+        [searchPokemon.fulfilled.type]: (state, action) => {
             //данные пришли
             state.pokemonIsLoad = false;
             state.pokemonIsError = false;
             state.pokemonIsErrorMessage = '';
             state.pokemon = pokemonAdapter(action.payload);
             console.log(action.payload);
-        })
-        builder.addCase(searchPokemon.pending, (state) => {
+        },
+        [searchPokemon.pending.type]: (state) => {
             state.pokemonIsLoad = true;
             state.pokemonIsError = false;
             state.pokemonIsErrorMessage = '';
-        })
-        builder.addCase(searchPokemon.rejected, (state, action) => {
+        },
+        [searchPokemon.rejected.type]: (state, action: PayloadAction<string>) => {
             state.pokemonIsLoad = false;
             state.pokemonIsError = true;
-            //уперто хочет работать только с типом unknown, хотя там строка
             state.pokemonIsErrorMessage = action.payload
             console.log('error: ', action.payload)
-        })
+        },
     },
+    //В старой форме записи была проблема с типизацией
+    // extraReducers: (builder) => {
+    //     builder.addCase(searchPokemon.fulfilled, (state, action) => {
+    //         //данные пришли
+    //         state.pokemonIsLoad = false;
+    //         state.pokemonIsError = false;
+    //         state.pokemonIsErrorMessage = '';
+    //         state.pokemon = pokemonAdapter(action.payload);
+    //         console.log(action.payload);
+    //     })
+    //     builder.addCase(searchPokemon.pending, (state) => {
+    //         state.pokemonIsLoad = true;
+    //         state.pokemonIsError = false;
+    //         state.pokemonIsErrorMessage = '';
+    //     })
+    //     builder.addCase(searchPokemon.rejected, (state, action: PayloadAction<string>) => {
+    //         state.pokemonIsLoad = false;
+    //         state.pokemonIsError = true;
+    //         //уперто хочет работать только с типом unknown, хотя там строка
+    //         state.pokemonIsErrorMessage = action.payload
+    //         console.log('error: ', action.payload)
+    //     })
+    // },
 })
 
 export const { addPokemon } = pokemonSlice.actions

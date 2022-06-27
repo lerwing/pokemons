@@ -3,7 +3,7 @@ import { API } from "../const";
 
 export const searchPokemon = createAsyncThunk(
     'pokemon/fetchInput',
-    async (textInput: string, {rejectWithValue}) => {
+    async (textInput: string, thunkAPI) => {
         try {
             const response = await fetch(`${API.POKEMONS}${textInput}`);
 
@@ -17,7 +17,7 @@ export const searchPokemon = createAsyncThunk(
         } catch (error:any) {
             // несмотря на то что в конструкторе message?: string не могу задать тип строка
             console.log(error)
-            return rejectWithValue (error.message)
+            return thunkAPI.rejectWithValue (error.message)
         }
     },
 );
