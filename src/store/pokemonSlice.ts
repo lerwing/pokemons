@@ -26,11 +26,12 @@ const pokemonSlice = createSlice({
             state.pokemonIsError = false;
             state.pokemonIsErrorMessage = '';
             state.pokemon = pokemonAdapter(action.payload);
-            console.log(pokemonAdapter(action.payload));
+            console.log(action.payload);
         },
         [searchPokemon.pending.type]: (state) => {
             state.pokemonIsLoad = true;
             state.pokemonIsError = false;
+            state.pokemon = undefined;
             state.pokemonIsErrorMessage = '';
         },
         [searchPokemon.rejected.type]: (state, action: PayloadAction<string>) => {
