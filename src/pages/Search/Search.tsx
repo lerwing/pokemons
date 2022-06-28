@@ -26,7 +26,7 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
             <FormSearch sendForm={searchPokemonProps}/>
             {pokemonIsLoad && <h2>Ищем покемона...</h2>}
             {pokemonIsError && <h2>Покемон с именем {pokemonIsErrorMessage} не найден</h2>}
-            <CardPokemon {...pokemon}/>
+            {pokemon && <CardPokemon {...pokemon}/>}
         </main>
     );
 };
