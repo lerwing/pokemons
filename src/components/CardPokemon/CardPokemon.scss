@@ -1,0 +1,33 @@
+.card {
+    display: block;
+
+    margin-left: 20%;
+    margin-top: 30px;
+    text-align: left;
+    border-width: 3px;
+    border: 10px;
+    border-color: black;
+    border-style: initial;
+    width: 400px;
+    height: 250px;
+    background-color: rgb(83, 105, 105);
+}
+
+.card__title {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+    color: rgb(168, 50, 152);
+}
+
+.card_img {
+    display: block;
+    float: left;
+}
+
+.card__text {
+    display: block;
+    position: relative;
+    float: left;
+}

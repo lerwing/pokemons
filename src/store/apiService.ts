@@ -8,7 +8,7 @@ export const searchPokemon = createAsyncThunk(
             const response = await fetch(`${API.POKEMONS}${textInput}`);
             if (!response.ok) {
                 console.log(response)
-                throw new Error ('Покемон не найден')
+                throw new Error (textInput)
             } else {
                 return response.json();
             }

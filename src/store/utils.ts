@@ -4,7 +4,7 @@ export const pokemonAdapter = (data: any): PokemonItem => {
 
     return {
         name: data?.name ?? '',
-        id: data?.id ?? 0,
+        idPokemon: data?.id ?? 0,
         svgUrl: data?.sprites.other.dream_world.front_default ?? '',
         hp: data?.stats[0].base_stat ?? 0,
         attack: data?.stats[1].base_stat ?? 0,
