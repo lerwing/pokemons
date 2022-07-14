@@ -1,13 +1,16 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { pokemonAPI } from '../service/getPokemonByIdService';
 import pokemonSlice from './pokemonSlice';
 
 const rootReducer = combineReducers ({
-    pokemonSlice
+    pokemonSlice,
+    [pokemonAPI.reducerPath]: pokemonAPI.reducer
 })
 
 export const sutupStore = () => {
     return configureStore({
-        reducer: rootReducer
+        reducer: rootReducer,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(pokemonAPI.middleware),
     });
 };
 

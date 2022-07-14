@@ -1,6 +1,7 @@
 .card {
+    float: left;
     margin: 0, auto;
-    margin-left: 20%;
+    margin-left: 5%;
     margin-top: 30px;
     text-align: left;
     padding: 10px;
@@ -11,7 +12,6 @@
 
 .card__title {
     text-align: center;
-    flex-direction: column;
     margin: 0;
     padding: 0;
     font-size: 2em;
@@ -34,4 +34,23 @@
     float: left;
     background-color: azure;
     font-size: 1.2em;
+}
+
+.card__like {
+    float: right;
+    margin-top: 0px;
+    margin-right: 0px;
+    padding: 0;
+    width: 37px;
+    height: 37px;
+    border: 0px;
+    background-color: rgb(194, 194, 194);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../../img/like.png');
+    filter: grayscale(0.5);
+}
+
+.card__like:hover {
+    filter: grayscale(0);
 }

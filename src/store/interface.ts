@@ -7,5 +7,5 @@ export interface StatePokemon {
     pokemonIsLoad: boolean;
     pokemonIsError: boolean;
     pokemonIsErrorMessage: string;
-    favoritPokemons: string[];
+    favoritPokemons: number[];
 }

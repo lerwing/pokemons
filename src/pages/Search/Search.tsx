@@ -4,6 +4,7 @@ import "./Search.scss"
 import { searchPokemon } from "../../store/apiService";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { CardPokemon } from "../../components/CardPokemon";
+import { addPokemon } from "../../store/pokemonSlice";
 
 
 const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
@@ -19,6 +20,9 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
     const searchPokemonProps = (namePokemon: string) => {
         dispatch(searchPokemon(namePokemon))
     };
+    const addPokemonHendler = (idPokemon: number) => {
+        dispatch(addPokemon(idPokemon))
+    };
 
     return (
         <main {...props} className='page-search' >
@@ -26,7 +30,7 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
             <FormSearch sendForm={searchPokemonProps}/>
             {pokemonIsLoad && <h2>Ищем покемона...</h2>}
             {pokemonIsError && <h2>Покемон с именем {pokemonIsErrorMessage} не найден</h2>}
-            {pokemon && <CardPokemon {...pokemon}/>}
+            {pokemon && <CardPokemon CallbackCard={addPokemonHendler} classNameBtn={"card__like"} {...pokemon}/>}
         </main>
     );
 };

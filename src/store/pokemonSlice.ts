@@ -14,10 +14,15 @@ const pokemonSlice = createSlice({
         favoritPokemons: [],
     } as StatePokemon,
     reducers: {
-        addPokemon(state: any, action: any) {
-            console.log(state);
-            console.log(action);
-        }
+        addPokemon(state: StatePokemon, action: PayloadAction<number>) {
+            const dublId:boolean = state.favoritPokemons.includes(action.payload);
+            if(!dublId){
+                state.favoritPokemons.push(action.payload)
+            };
+        },
+        dellPokemon(state: StatePokemon, action: PayloadAction<number>){
+            state.favoritPokemons = state.favoritPokemons.filter((value) => value !== action.payload)
+        },
     },
     extraReducers: {
         [searchPokemon.fulfilled.type]: (state, action) => {
@@ -41,31 +46,8 @@ const pokemonSlice = createSlice({
             console.log('error: ', action.payload)
         },
     },
-    //В старой форме записи была проблема с типизацией
-    // extraReducers: (builder) => {
-    //     builder.addCase(searchPokemon.fulfilled, (state, action) => {
-    //         //данные пришли
-    //         state.pokemonIsLoad = false;
-    //         state.pokemonIsError = false;
-    //         state.pokemonIsErrorMessage = '';
-    //         state.pokemon = pokemonAdapter(action.payload);
-    //         console.log(action.payload);
-    //     })
-    //     builder.addCase(searchPokemon.pending, (state) => {
-    //         state.pokemonIsLoad = true;
-    //         state.pokemonIsError = false;
-    //         state.pokemonIsErrorMessage = '';
-    //     })
-    //     builder.addCase(searchPokemon.rejected, (state, action: PayloadAction<string>) => {
-    //         state.pokemonIsLoad = false;
-    //         state.pokemonIsError = true;
-    //         //уперто хочет работать только с типом unknown, хотя там строка
-    //         state.pokemonIsErrorMessage = action.payload
-    //         console.log('error: ', action.payload)
-    //     })
-    // },
 })
 
-export const { addPokemon } = pokemonSlice.actions
+export const { addPokemon, dellPokemon } = pokemonSlice.actions
 
 export default pokemonSlice.reducer
