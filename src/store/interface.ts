@@ -8,4 +8,5 @@ export interface StatePokemon {
     pokemonIsError: boolean;
     pokemonIsErrorMessage: string;
     favoritPokemons: number[];
+    favoritPokemonsData: PokemonItem[];
 }

@@ -1,39 +1,54 @@
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes, useEffect } from "react";
 import { CardPokemon } from "../../components/CardPokemon";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { PokemonItem } from "../../interfaces";
-import { pokemonAPI } from "../../service/getPokemonByIdService";
-import { dellPokemon } from "../../store/pokemonSlice";
-import { pokemonAdapter } from "../../store/utils";
+import { loadPokemonCollection } from "../../store/apiService";
+import { dellPokemon, viewPocemonCollection } from "../../store/pokemonSlice";
 import "./Collection.scss"
 
 
 
 const Collection:FC<HTMLAttributes<HTMLElement>> = () => {
     const dispatch = useAppDispatch()
-    const { favoritPokemons } = useAppSelector(state => state.pokemonSlice)
-    let collection: PokemonItem[] = [];
+    const { favoritPokemonsData, favoritPokemons } = useAppSelector(state => state.pokemonSlice)
 
-    const multiGet = (arrId: number[]) => {
-        
-        arrId.forEach((item, index) => {
-            const { data } = pokemonAPI.useGetPokemonByIDQuery(item);
-            collection[index] = pokemonAdapter(data);
-        })
-    };
-    
-    multiGet(favoritPokemons)
+    // useEffect(() => {
+    //     if (favoritPokemons){
+    //         let scanID: boolean = false
+            
+    //         favoritPokemons.forEach((pokemonID) => {
+    //             favoritPokemonsData.forEach((collectionData) => {
+    //                 if (collectionData.idPokemon === pokemonID) {
+    //                     scanID = true;
+    //                 }
+    //             });
+
+    //             if (!scanID) {
+    //                 dispatch(loadPokemonCollection(pokemonID))
+    //             };
+    //         });
+    //     };
+    //     //dispatch(loadPokemonCollection(1))
+    // },[dispatch, favoritPokemons, favoritPokemonsData]);
+
+    useEffect(() => {
+        dispatch(viewPocemonCollection())
+    },[dispatch, favoritPokemons, favoritPokemonsData]);
 
     const dellPokemonHendler = (idPokemon: number) => {
-        dispatch(dellPokemon(idPokemon))
+        dispatch(dellPokemon(idPokemon));
     };
     
     return (
         <main className='page-сollection' >
             <h1 className="title-page">Ваша коллекция</h1>
-            { collection.length !==0 && collection.map(collection => 
-                <CardPokemon key={collection.idPokemon} CallbackCard={dellPokemonHendler} classNameBtn={"card__like"} {...collection}/>
-            ) }
+            { favoritPokemonsData.length !==0 && favoritPokemonsData.map(collection => 
+                <CardPokemon 
+                    key={collection.idPokemon}
+                    CallbackCard={dellPokemonHendler}
+                    classNameBtn={"card__like"}
+                    {...collection}
+                />
+            )}
         </main>
     );
 };

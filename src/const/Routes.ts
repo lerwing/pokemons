@@ -1,5 +1,5 @@
 export enum ROUTES {
-    HOME = '/',
+    HOME = '/pokemons',
     COLLECTION = '/collection',
     EROR404 = '*'
 }

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { searchPokemon } from "./apiService";
+import { loadPokemonCollection, searchPokemon } from "./apiService";
 import { StatePokemon } from "./interface";
 import { pokemonAdapter } from "./utils";
 
@@ -12,6 +12,7 @@ const pokemonSlice = createSlice({
         pokemonIsError: false,
         pokemonIsErrorMessage: '',
         favoritPokemons: [],
+        favoritPokemonsData: [],
     } as StatePokemon,
     reducers: {
         addPokemon(state: StatePokemon, action: PayloadAction<number>) {
@@ -22,6 +23,26 @@ const pokemonSlice = createSlice({
         },
         dellPokemon(state: StatePokemon, action: PayloadAction<number>){
             state.favoritPokemons = state.favoritPokemons.filter((value) => value !== action.payload)
+        },
+        clearResultSerth(state: StatePokemon){
+            state.pokemon = undefined;
+            state.pokemonIsLoad = false;
+            state.pokemonIsError = false;
+            state.pokemonIsErrorMessage = '';
+        },
+        viewPocemonCollection(state: StatePokemon){
+            state.pokemonIsErrorMessage = '';
+            state.pokemonIsLoad = false;
+            state.pokemonIsError = false;
+            Promise.all([
+                loadPokemonCollection(22),
+                loadPokemonCollection(20),
+            ]).then(result => {
+                console.log(result)
+            });
+            //const temp = loadPokemonCollection(22)
+            //loadPokemonCollection(22)
+            //console.log(temp)
         },
     },
     extraReducers: {
@@ -45,9 +66,13 @@ const pokemonSlice = createSlice({
             state.pokemonIsErrorMessage = action.payload
             console.log('error: ', action.payload)
         },
+        // [loadPokemonCollection.fulfilled.type]: (state, action) => {
+        //     console.log(pokemonAdapter(action.payload));
+        //     state.favoritPokemonsData.push(pokemonAdapter(action.payload))
+        // },
     },
 })
 
-export const { addPokemon, dellPokemon } = pokemonSlice.actions
+export const { addPokemon, dellPokemon, clearResultSerth, viewPocemonCollection } = pokemonSlice.actions
 
 export default pokemonSlice.reducer
