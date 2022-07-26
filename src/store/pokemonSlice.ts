@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { loadPokemonCollection, searchPokemon } from "./apiService";
+import { loadPokemonCollection, loadPokemonCollection2, searchPokemon } from "./apiService";
 import { StatePokemon } from "./interface";
 import { pokemonAdapter } from "./utils";
 
@@ -11,7 +11,7 @@ const pokemonSlice = createSlice({
         pokemonIsLoad: false,
         pokemonIsError: false,
         pokemonIsErrorMessage: '',
-        favoritPokemons: [],
+        favoritPokemons: [1,2],
         favoritPokemonsData: [],
     } as StatePokemon,
     reducers: {
@@ -34,12 +34,19 @@ const pokemonSlice = createSlice({
             state.pokemonIsErrorMessage = '';
             state.pokemonIsLoad = false;
             state.pokemonIsError = false;
-            Promise.all([
-                loadPokemonCollection(22),
-                loadPokemonCollection(20),
-            ]).then(result => {
-                console.log(result)
-            });
+            state.favoritPokemons.forEach((idPokemon) =>{
+                //state.favoritPokemonsData.push(pokemonAdapter(loadPokemonCollection(idPokemon)))
+                Promise.any([
+                    loadPokemonCollection2(idPokemon)
+                ]).then(result =>{
+                    result = pokemonAdapter(result);
+                    console.log(result)
+                    //state.favoritPokemonsData.push(result)
+                })
+                //console.log(loadPokemonCollection(idPokemon))
+            })
+            //console.log(state.favoritPokemonsData)
+            //console.log(state.favoritPokemons)
             //const temp = loadPokemonCollection(22)
             //loadPokemonCollection(22)
             //console.log(temp)
@@ -66,10 +73,10 @@ const pokemonSlice = createSlice({
             state.pokemonIsErrorMessage = action.payload
             console.log('error: ', action.payload)
         },
-        // [loadPokemonCollection.fulfilled.type]: (state, action) => {
-        //     console.log(pokemonAdapter(action.payload));
-        //     state.favoritPokemonsData.push(pokemonAdapter(action.payload))
-        // },
+        [loadPokemonCollection.fulfilled.type]: (state, action) => {
+            console.log(pokemonAdapter(action.payload));
+            state.favoritPokemonsData.push(pokemonAdapter(action.payload))
+        },
     },
 })
 

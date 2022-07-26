@@ -11,28 +11,28 @@ const Collection:FC<HTMLAttributes<HTMLElement>> = () => {
     const dispatch = useAppDispatch()
     const { favoritPokemonsData, favoritPokemons } = useAppSelector(state => state.pokemonSlice)
 
-    // useEffect(() => {
-    //     if (favoritPokemons){
-    //         let scanID: boolean = false
-            
-    //         favoritPokemons.forEach((pokemonID) => {
-    //             favoritPokemonsData.forEach((collectionData) => {
-    //                 if (collectionData.idPokemon === pokemonID) {
-    //                     scanID = true;
-    //                 }
-    //             });
-
-    //             if (!scanID) {
-    //                 dispatch(loadPokemonCollection(pokemonID))
-    //             };
-    //         });
-    //     };
-    //     //dispatch(loadPokemonCollection(1))
-    // },[dispatch, favoritPokemons, favoritPokemonsData]);
-
     useEffect(() => {
-        dispatch(viewPocemonCollection())
+        if (favoritPokemons){
+            let scanID: boolean = false
+            
+            favoritPokemons.forEach((pokemonID) => {
+                favoritPokemonsData.forEach((collectionData) => {
+                    if (collectionData.idPokemon === pokemonID) {
+                        scanID = true;
+                    }
+                });
+
+                if (!scanID) {
+                    dispatch(loadPokemonCollection(pokemonID))
+                };
+            });
+        };
+        //dispatch(loadPokemonCollection(1))
     },[dispatch, favoritPokemons, favoritPokemonsData]);
+
+    // useEffect(() => {
+    //     dispatch(viewPocemonCollection())
+    // },[favoritPokemons]);
 
     const dellPokemonHendler = (idPokemon: number) => {
         dispatch(dellPokemon(idPokemon));

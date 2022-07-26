@@ -23,26 +23,27 @@ export const searchPokemon = createAsyncThunk(
     },
 );
 
-export const loadPokemonCollection = async (idPocemon:Number) => {
+export const loadPokemonCollection2 = async (idPocemon:Number) => {
         const response = await axios.get(`${API.POKEMONS}${idPocemon}`)
-        return pokemonAdapter(response.data);
+        //console.log(response)
+        return response.data;
 }
-// export const loadPokemonCollection = createAsyncThunk(
-//     'pokemon/loadPokemonCollection',
-//     async (idPocemon: number, thunkAPI) => {
-//         try {
-//             const response = await fetch(`${API.POKEMONS}${idPocemon}`);
-//             if (!response.ok) {
-//                 console.log(response)
-//                 throw new Error ('Server Error')
-//             } else {
-//                 return response.json();
-//             }
+export const loadPokemonCollection = createAsyncThunk(
+    'pokemon/loadPokemonCollection',
+    async (idPocemon: number, thunkAPI) => {
+        try {
+            const response = await fetch(`${API.POKEMONS}${idPocemon}`);
+            if (!response.ok) {
+                //console.log(response)
+                throw new Error ('Server Error')
+            } else {
+                return response.json();
+            }
             
-//         } catch (error:any) {
-//             // несмотря на то что в конструкторе message?: string не могу задать тип строка
-//             console.log(error)
-//             return thunkAPI.rejectWithValue (error.message)
-//         }
-//     },
-// );
+        } catch (error:any) {
+            // несмотря на то что в конструкторе message?: string не могу задать тип строка
+            console.log(error)
+            return thunkAPI.rejectWithValue (error.message)
+        }
+    },
+);
