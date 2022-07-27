@@ -1,5 +1,5 @@
 export interface PokemonItem {
-    name: string;
+    name?: string;
     idPokemon: number;
     svgUrl?: string;
     hp?: number;

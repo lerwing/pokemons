@@ -1,7 +1,8 @@
 import { HTMLAttributes } from "react";
-import { PokemonItem } from "../../interfaces"
 
-export interface CardPokemonProps extends PokemonItem, HTMLAttributes<HTMLDivElement> {
+
+export interface CardPokemonProps extends HTMLAttributes<HTMLDivElement> {
+    idPokemon: number, 
     classNameBtn: 'card__like'|'card__dell',
     CallbackCard: (value: number) => void,
 }

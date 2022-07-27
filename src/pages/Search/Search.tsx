@@ -4,7 +4,7 @@ import "./Search.scss"
 import { searchPokemon } from "../../store/apiService";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { CardPokemon } from "../../components/CardPokemon";
-import { addPokemon } from "../../store/pokemonSlice";
+import { addPokemon, saveLocal } from "../../store/pokemonSlice";
 
 
 const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
@@ -13,7 +13,7 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
     const { 
         pokemonIsLoad,
         pokemonIsError,
-        pokemon,
+        pokemonID,
         pokemonIsErrorMessage,
     } = useAppSelector (state => state.pokemonSlice)
 
@@ -21,7 +21,8 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
         dispatch(searchPokemon(namePokemon))
     };
     const addPokemonHendler = (idPokemon: number) => {
-        dispatch(addPokemon(idPokemon))
+        dispatch(addPokemon(idPokemon));
+        dispatch(saveLocal())
     };
 
     return (
@@ -30,7 +31,8 @@ const Search:FC<HTMLAttributes<HTMLElement>> = (props) => {
             <FormSearch sendForm={searchPokemonProps}/>
             {pokemonIsLoad && <h2>Ищем покемона...</h2>}
             {pokemonIsError && <h2>Покемон с именем {pokemonIsErrorMessage} не найден</h2>}
-            {pokemon && <CardPokemon CallbackCard={addPokemonHendler} classNameBtn={"card__like"} {...pokemon}/>}
+            {pokemonIsErrorMessage !=='' && !pokemonIsError && <h2>{pokemonIsErrorMessage}</h2>}
+            {pokemonID && <CardPokemon CallbackCard={addPokemonHendler} classNameBtn={"card__like"} idPokemon={pokemonID}/>}
         </main>
     );
 };

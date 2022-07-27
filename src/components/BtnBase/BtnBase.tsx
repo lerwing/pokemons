@@ -7,7 +7,6 @@ const BtnBase:FC<ButtonHTMLAttributes<HTMLButtonElement> & {clickCallback?: () =
     const click = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         clickCallback?.();
-        console.log('click');
     };
 
     return (

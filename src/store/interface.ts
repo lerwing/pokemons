@@ -1,12 +1,7 @@
-import { PokemonItem } from "../interfaces";
-
-
-
 export interface StatePokemon {
-    pokemon?: PokemonItem;
+    pokemonID: number|undefined;
     pokemonIsLoad: boolean;
     pokemonIsError: boolean;
     pokemonIsErrorMessage: string;
     favoritPokemons: number[];
-    favoritPokemonsData: PokemonItem[];
 }

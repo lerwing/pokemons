@@ -1,12 +1,19 @@
+import { useEffect } from 'react';
 import { Routes, Route, } from 'react-router-dom';
 import './App.scss'
 import { MenuLeft } from './components'
 import { ROUTES } from './const';
+import { useAppDispatch } from './hooks/redux';
 import { Collection, Eror404, Search } from './pages';
+import { loadLocal } from './store/pokemonSlice';
 
 
 function App() {
-
+  const dispatch = useAppDispatch()
+  useEffect(()=>{
+    dispatch(loadLocal());
+  },[dispatch]);
+  
   return (
     <>
       <MenuLeft/>
