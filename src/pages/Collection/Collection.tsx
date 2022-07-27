@@ -25,7 +25,7 @@ const Collection:FC<HTMLAttributes<HTMLElement>> = () => {
                 <CardPokemon 
                     key={ID}
                     CallbackCard={dellPokemonHendler}
-                    classNameBtn={"card__like"}
+                    classNameBtn={"btn__clear"}
                     idPokemon = {ID}
                 />
             )}

@@ -31,7 +31,7 @@ const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string
                 value={textInput}
                 onChange={onChangeHandler}
             />
-            <BtnBase type="button" className='form-search__btnX' clickCallback={clickCloseBtn}>X</BtnBase>
+            <BtnBase type="button" className='btn__clear' clickCallback={clickCloseBtn}></BtnBase>
             <BtnBase type="submit" clickCallback={onSubmitHandler}>Поиск</BtnBase>
         </>
         </form>

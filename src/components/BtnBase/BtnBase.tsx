@@ -10,7 +10,7 @@ const BtnBase:FC<ButtonHTMLAttributes<HTMLButtonElement> & {clickCallback?: () =
     };
 
     return (
-        <button className="btn-base" onClick={click} { ...props } >
+        <button className="btn" onClick={click} { ...props } >
             {children}
         </button>
     );
