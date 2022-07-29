@@ -47,6 +47,7 @@ const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string
             />
             <BtnBase type="button" className='btn__clear' clickCallback={clickCloseBtn}></BtnBase>
             <BtnBase type="submit" clickCallback={onSubmitHandler}>Поиск</BtnBase>
+            {validator === "input--valid-false" && <div className="tooltip">Разрешены только строчные латинские буквы, введите не менее трех.</div>}
         </>
         </form>
     );
