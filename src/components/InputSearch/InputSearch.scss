@@ -10,20 +10,19 @@
         border: 2px solid rgb(5, 132, 182);
     }
 
-}
-
-.input--valid-ok {
-    border: 2px solid rgb(16, 138, 0);
-
-    &:focus {
+    &.input--valid-ok{
         border: 2px solid rgb(16, 138, 0);
+
+        &:focus {
+            border: 2px solid rgb(16, 138, 0);
+        }
     }
-}
 
-.input--valid-false {
-    border: 2px solid rgb(226, 9, 9);
-
-    &:focus {
+    &.input--valid-false {
         border: 2px solid rgb(226, 9, 9);
+    
+        &:focus {
+            border: 2px solid rgb(226, 9, 9);
+        }
     }
 }
