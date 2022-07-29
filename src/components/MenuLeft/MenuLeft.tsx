@@ -8,6 +8,7 @@ const MenuLeft:FC<HTMLAttributes<HTMLDivElement>> = (props) => {
 
     return (
         <div className='menu-left' {...props}>
+            <p className='menu-title'>Меню</p>
             <NavLink to={ROUTES.HOME} className={({isActive}) => isActive ? 'link__active' : 'link'}>Поиск</NavLink>
             <NavLink to={ROUTES.COLLECTION} className={({isActive}) => isActive ? 'link__active' : 'link'}>Избранное</NavLink>
         </div>
