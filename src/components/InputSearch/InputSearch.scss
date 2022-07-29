@@ -1,7 +1,29 @@
-.input-search {
+.input {
     position: relative;
     
-    border: 1px inset rgb(0, 0, 0);
+    border: 2px solid black;
     border-radius: 10px;
     font-size: 1.2em;
+    outline:0px;
+
+    &:focus {
+        border: 2px solid rgb(5, 132, 182);
+    }
+
+}
+
+.input--valid-ok {
+    border: 2px solid rgb(16, 138, 0);
+
+    &:focus {
+        border: 2px solid rgb(16, 138, 0);
+    }
+}
+
+.input--valid-false {
+    border: 2px solid rgb(226, 9, 9);
+
+    &:focus {
+        border: 2px solid rgb(226, 9, 9);
+    }
 }

@@ -1,9 +1,14 @@
-import { FC, HTMLProps } from "react";
+import { FC, InputHTMLAttributes } from "react";
 import './InputSearch.scss';
 
-const InputMain:FC<HTMLProps<HTMLInputElement>> = (props) => {
+interface InputMain extends InputHTMLAttributes<HTMLInputElement> {
+    classModify?: string
+}
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+const InputMain: FC<InputMain> = ({classModify ,...props}) => {
     return (
-        <input {...props} className="input-search" />
+        <input {...props} className={"input "+classModify} />
     );
 };
 
