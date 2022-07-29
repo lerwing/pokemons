@@ -15,14 +15,14 @@ function App() {
   },[dispatch]);
   
   return (
-    <>
+    <div className='page'>
       <MenuLeft/>
       <Routes>
         <Route path={ROUTES.HOME} element={<Search/>}/>
         <Route path={ROUTES.COLLECTION} element={<Collection/>}/>
         <Route path={ROUTES.EROR404} element={<Eror404/>}/>
       </Routes>
-    </>
+    </div>
   );
 }
 

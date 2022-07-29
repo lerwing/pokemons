@@ -8,6 +8,7 @@ import "./FormSearch.scss"
 const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string) => void}> = ({sendForm, ...props}) => {
     const [textInput, setTextInput] = useState<string>('');
     const [validator, setValidator] = useState<''|'input--valid-ok'|'input--valid-false'>('');
+    const [btnDisable, setBtnDisable] = useState<'btn'|'btn btn--disable'>('btn btn--disable')
 
     const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setTextInput(e?.target?.value);
@@ -16,10 +17,13 @@ const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string
     useEffect (() => {
         if (textInput === ''){
             setValidator('')
+            setBtnDisable("btn btn--disable")
         } else if (/^[a-z]{3,}$/.test(textInput)) {
             setValidator('input--valid-ok')
+            setBtnDisable("btn")
         } else {
             setValidator('input--valid-false')
+            setBtnDisable("btn btn--disable")
         };
     },[textInput]);
 
@@ -46,7 +50,7 @@ const FormSearch:FC<HTMLAttributes<HTMLFormElement> & {sendForm?: (value: string
                 classModify={validator}
             />
             <BtnBase type="button" className='btn__clear' clickCallback={clickCloseBtn}></BtnBase>
-            <BtnBase type="submit" clickCallback={onSubmitHandler}>Поиск</BtnBase>
+            <BtnBase type="submit" className={btnDisable} clickCallback={onSubmitHandler} >Поиск</BtnBase>
             {validator === "input--valid-false" && <div className="tooltip">Разрешены только строчные латинские буквы, введите не менее трех.</div>}
         </>
         </form>

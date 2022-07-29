@@ -5,7 +5,7 @@
     height: 100%;
     
     font-weight: bold;
-    background-color: rgb(134, 134, 134);
+    background-color: #868686;
     text-align: center;
     font-size: 1.3em;
     user-select: none;
@@ -14,7 +14,7 @@
         line-height: 40px;
         font-size: 1.3em;
         cursor: default;
-        color: rgb(0, 0, 0);
+        color: #000000;
     }
 
     .link {
@@ -23,10 +23,10 @@
 
         margin-top: 10px;
 
-        color: rgb(17, 0, 255);
+        color: #1100ff;
 
         &:hover {
-            color: rgb(219, 199, 19);
+            color: #dbc713;
         }
     }
 
@@ -36,7 +36,7 @@
 
         margin-top: 10px;
 
-        color: rgb(17, 230, 52);
+        color: #11e634;
         cursor: default;
     }
 }
