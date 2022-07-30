@@ -1,8 +1,6 @@
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes } from 'react';
 
-
-
-const Eror404:FC<HTMLAttributes<HTMLElement>> = () => {
+const Eror404: FC<HTMLAttributes<HTMLElement>> = () => {
     return (
         <main className="page">
             <h2>Страница не найдена</h2>
@@ -10,4 +8,4 @@ const Eror404:FC<HTMLAttributes<HTMLElement>> = () => {
     );
 };
 
-export default Eror404
+export default Eror404;

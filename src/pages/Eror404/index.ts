@@ -1,2 +1,2 @@
-import Eror404 from "./Eror404";
-export { Eror404 }
+import Eror404 from './Eror404';
+export { Eror404 };

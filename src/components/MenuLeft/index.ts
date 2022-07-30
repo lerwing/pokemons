@@ -1,2 +1,2 @@
-import MenuLeft from "./MenuLeft";
-export { MenuLeft }
+import MenuLeft from './MenuLeft';
+export { MenuLeft };

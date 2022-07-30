@@ -1,2 +1,2 @@
-import FormSearch from "./FormSearch"
-export {FormSearch}
+import FormSearch from './FormSearch';
+export { FormSearch };

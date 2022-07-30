@@ -1,2 +1,2 @@
-import InputMain from './InputSearch'
-export { InputMain } 
+import InputMain from './InputSearch';
+export { InputMain };

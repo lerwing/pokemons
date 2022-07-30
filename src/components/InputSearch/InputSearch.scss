@@ -1,10 +1,10 @@
 .input {
     position: relative;
-    
+
     border: 2px solid #6d6d6d;
     border-radius: 10px;
     font-size: 1.2em;
-    outline:0px;
+    outline: 0px;
 
     &:focus {
         border: 2px solid #0584b6;
@@ -20,7 +20,7 @@
 
     &.input--valid-false {
         border: 2px solid #e20909;
-    
+
         &:focus {
             border: 2px solid #e20909;
         }

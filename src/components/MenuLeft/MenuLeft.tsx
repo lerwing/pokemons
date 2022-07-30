@@ -3,14 +3,16 @@ import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../const';
 import './MenuLeft.scss';
 
-const MenuLeft:FC<HTMLAttributes<HTMLDivElement>> = (props) => {
-
-
+const MenuLeft: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
     return (
-        <div className='menu-left' {...props}>
-            <p className='menu-title'>Меню</p>
-            <NavLink to={ROUTES.HOME} className={({isActive}) => isActive ? 'link__active' : 'link'}>Поиск</NavLink>
-            <NavLink to={ROUTES.COLLECTION} className={({isActive}) => isActive ? 'link__active' : 'link'}>Избранное</NavLink>
+        <div className="menu-left" {...props}>
+            <p className="menu-title">Меню</p>
+            <NavLink to={ROUTES.HOME} className={({ isActive }) => (isActive ? 'link__active' : 'link')}>
+                Поиск
+            </NavLink>
+            <NavLink to={ROUTES.COLLECTION} className={({ isActive }) => (isActive ? 'link__active' : 'link')}>
+                Избранное
+            </NavLink>
         </div>
     );
 };

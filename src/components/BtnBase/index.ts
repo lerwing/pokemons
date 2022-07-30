@@ -1,2 +1,2 @@
-import BtnBase from "./BtnBase";
-export { BtnBase }
+import BtnBase from './BtnBase';
+export { BtnBase };

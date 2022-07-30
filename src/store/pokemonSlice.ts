@@ -1,7 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { searchPokemon } from "./apiService";
-import { StatePokemon } from "./interface";
-
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { searchPokemon } from './apiService';
+import { StatePokemon } from './interface';
 
 const pokemonSlice = createSlice({
     name: 'pokemon',
@@ -14,29 +13,31 @@ const pokemonSlice = createSlice({
     } as StatePokemon,
     reducers: {
         addPokemon(state: StatePokemon, action: PayloadAction<number>) {
-            const dublId:boolean = state.favoritPokemons.includes(action.payload);
-            if(!dublId){
-                state.favoritPokemons.push(action.payload)
-            };
+            const dublId: boolean = state.favoritPokemons.includes(action.payload);
+            if (!dublId) {
+                state.favoritPokemons.push(action.payload);
+            }
             state.pokemonID = undefined;
             state.pokemonIsErrorMessage = 'Покемон добавлен в коллекцию';
         },
-        dellPokemon(state: StatePokemon, action: PayloadAction<number>){
-            state.favoritPokemons = state.favoritPokemons.filter((value) => value !== action.payload)
+        dellPokemon(state: StatePokemon, action: PayloadAction<number>) {
+            state.favoritPokemons = state.favoritPokemons.filter((value) => value !== action.payload);
         },
-        clearAllFlag(state: StatePokemon){
+        clearAllFlag(state: StatePokemon) {
             state.pokemonID = undefined;
             state.pokemonIsLoad = false;
             state.pokemonIsError = false;
             state.pokemonIsErrorMessage = '';
         },
-        saveLocal(state: StatePokemon){
+        saveLocal(state: StatePokemon) {
             localStorage.setItem('collectionPokemonID', JSON.stringify(state.favoritPokemons));
         },
-        loadLocal(state: StatePokemon){
-            if(localStorage.getItem('collectionPokemonID')){
-                //@ts-ignore
-                state.favoritPokemons = JSON.parse(localStorage.getItem('collectionPokemonID'));
+        loadLocal(state: StatePokemon) {
+            if (localStorage.getItem('collectionPokemonID')) {
+                state.favoritPokemons = JSON.parse(
+                    //@ts-ignore
+                    localStorage.getItem('collectionPokemonID')
+                );
             }
         },
     },
@@ -57,11 +58,11 @@ const pokemonSlice = createSlice({
         [searchPokemon.rejected.type]: (state, action: PayloadAction<string>) => {
             state.pokemonIsLoad = false;
             state.pokemonIsError = true;
-            state.pokemonIsErrorMessage = action.payload
+            state.pokemonIsErrorMessage = action.payload;
         },
     },
-})
+});
 
-export const { addPokemon, dellPokemon, saveLocal, loadLocal, clearAllFlag } = pokemonSlice.actions
+export const { addPokemon, dellPokemon, saveLocal, loadLocal, clearAllFlag } = pokemonSlice.actions;
 
-export default pokemonSlice.reducer
+export default pokemonSlice.reducer;

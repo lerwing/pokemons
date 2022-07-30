@@ -1,7 +1,6 @@
-import { PokemonItem } from "../interfaces";
+import { PokemonItem } from '../interfaces';
 
 export const pokemonAdapter = (data: any): PokemonItem => {
-
     return {
         name: data?.name ?? '',
         idPokemon: data?.id ?? 0,
@@ -10,5 +9,5 @@ export const pokemonAdapter = (data: any): PokemonItem => {
         attack: data?.stats[1].base_stat ?? 0,
         defense: data?.stats[2].base_stat ?? 0,
         speed: data?.stats[5].base_stat ?? 0,
-    }
-}
+    };
+};

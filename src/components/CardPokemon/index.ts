@@ -1,3 +1,3 @@
-import CardPokemon from "./CardPokemon";
+import CardPokemon from './CardPokemon';
 
-export { CardPokemon }
+export { CardPokemon };

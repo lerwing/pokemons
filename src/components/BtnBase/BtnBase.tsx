@@ -1,16 +1,14 @@
-import { FC, ButtonHTMLAttributes } from "react";
+import { FC, ButtonHTMLAttributes } from 'react';
 import './BtnBase.scss';
 
-
-
-const BtnBase:FC<ButtonHTMLAttributes<HTMLButtonElement> & {clickCallback?: () => void}> = ({children, clickCallback, ...props}) => {
-    const click = (event: { preventDefault: () => void; }) => {
+const BtnBase: FC<ButtonHTMLAttributes<HTMLButtonElement> & { clickCallback?: () => void }> = ({ children, clickCallback, ...props }) => {
+    const click = (event: { preventDefault: () => void }) => {
         event.preventDefault();
         clickCallback?.();
     };
 
     return (
-        <button className="btn" onClick={click} { ...props } >
+        <button className="btn" onClick={click} {...props}>
             {children}
         </button>
     );

@@ -1,11 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { pokemonAPI } from '../service/getPokemonByIdService';
 import pokemonSlice from './pokemonSlice';
 
-const rootReducer = combineReducers ({
+const rootReducer = combineReducers({
     pokemonSlice,
-    [pokemonAPI.reducerPath]: pokemonAPI.reducer
-})
+    [pokemonAPI.reducerPath]: pokemonAPI.reducer,
+});
 
 export const sutupStore = () => {
     return configureStore({
@@ -14,8 +14,6 @@ export const sutupStore = () => {
     });
 };
 
-
-
-export type RootState = ReturnType<typeof rootReducer>
-export type AppStore = ReturnType<typeof sutupStore>
-export type AppDispatch = AppStore['dispatch']
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof sutupStore>;
+export type AppDispatch = AppStore['dispatch'];

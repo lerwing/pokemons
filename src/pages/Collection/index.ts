@@ -1,2 +1,2 @@
-import Collection from "./Collection";
-export { Collection }
+import Collection from './Collection';
+export { Collection };

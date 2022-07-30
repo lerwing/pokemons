@@ -1,4 +1,4 @@
-import {ROUTES} from './Routes'
-import { API } from './Api'
+import { ROUTES } from './Routes';
+import { API } from './Api';
 
-export {ROUTES, API}
+export { ROUTES, API };

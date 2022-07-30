@@ -5,7 +5,7 @@
     width: 80%;
     margin-top: 1%;
     margin-left: 150px;
-    
+
     .btn__clear {
         float: right;
         position: relative;
@@ -13,10 +13,9 @@
         margin-top: 5px;
         background-color: #db6521;
         filter: opacity(100%);
-    
+
         &:hover {
             background-color: #ff0000;
         }
     }
 }
-

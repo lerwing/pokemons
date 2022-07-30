@@ -1,4 +1,4 @@
-@keyframes show{
+@keyframes show {
     0% {
         opacity: 0;
     }
@@ -29,19 +29,19 @@
         margin-left: 1em;
         font-size: 1.1em;
 
-        color:#17c700;
-        width:100px;
-        text-decoration:none;
-        background-image: linear-gradient(to left,transparent,transparent 50%,#17c700 50%,#17c700);
+        color: #17c700;
+        width: 100px;
+        text-decoration: none;
+        background-image: linear-gradient(to left, transparent, transparent 50%, #17c700 50%, #17c700);
         background-position: 100% 0;
         background-size: 200% 100%;
-        transition: all .25s ease-in;
+        transition: all 0.25s ease-in;
         border: 1px solid #17c700;
         border-radius: 10px;
 
         &:hover {
             background-position: 0 0;
-            color:#fff;
+            color: #fff;
         }
 
         &.btn--disable {
@@ -53,7 +53,6 @@
             }
         }
     }
-
 
     .tooltip {
         display: block;
